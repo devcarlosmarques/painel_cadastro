@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário de Produto</title>
+    <!-- Incluindo Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'warning' %}alert-warning{% elif message.tags == 'info' %}alert-info{% elif message.tags == 'success' %}alert-success{% endif %}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h4>Formulário de Produto</h4>
+            </div>
+            <div class="card-body">
+              <form action="{% url "cadastro" %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="nomeProduto">Nome do Produto:</label>
+                  <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto" name="campo_nome" />
+                </div>
+                <div class="form-group">
+                  <label for="quantidade">Quantidade:</label>
+                  <input type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade" name="campo_quantidade" />
+                </div>
+                <div class="form-group">
+                  <label for="preco">Preço:</label>
+                  <input type="number" class="form-control" id="preco" placeholder="Digite o preço" name="campo_preco" />
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Incluindo Bootstrap JS (opcional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
